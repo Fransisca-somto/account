@@ -1,0 +1,17 @@
+.newcus label, .modifycus label {
+    display: flex;
+    flex-direction: column;
+}
+
+.newcus label input, .modifycus label input{
+    padding: 0.2em 0.7em;
+    border: 1px solid rgba(0, 0, 0, 0.815);
+    border-radius: 0.2em;
+}
+
+.newcus label input:focus .modifycus label input:focus {
+    outline: none;
+    border: 2px solid rgb(0, 14, 136);
+
+
+}

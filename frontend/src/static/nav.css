@@ -1,0 +1,41 @@
+.colors::-webkit-scrollbar {
+  width: 0.2em;
+  height: 0.5em;
+}
+
+.colors::-webkit-scrollbar-track {
+    background: hsla(229, 100%, 20%, 0);
+    border-radius: 100vw;
+    margin-block-start: 3em;
+}
+
+.colors::-webkit-scrollbar-thumb {
+    background: hsl(239, 75%, 50%);
+  /* border: 0.25em solid hsl(120 75% 50% / 1); */
+  border-radius: 100vw;
+}
+
+.colors::-webkit-scrollbar-thumb:hover {
+  background: hsl(120 100% 10% / 1);
+}
+
+/* Vertical scrolling */
+/* 
+.colors {
+  display: grid;
+  gap: 0.5em;
+  grid-auto-flow: column;
+  grid-auto-columns: 75%;
+  padding: 0.5em;
+  overflow-x: scroll;
+  background: #d3fdbe;
+  border-radius: 1em;
+  position: relative;
+}
+
+.colors > div {
+  background: hsl(0 0% 90%);
+  border-radius: 1em;
+  border: 0.5em solid hsl(0 0% 60%);
+  padding: 1em;
+} */
