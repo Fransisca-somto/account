@@ -1,7 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import "./newcustomers.css"
 
 const NewCustomers = () => {
+  const [cusName, setCusName] = useState('');
+  const [Phone, setPhone] = useState(0);
+  const [Address, setAddress] = useState('');
+  const [ID, setID] = useState(0);
+  const [postalCode, setPostalCode] = useState(0);
+
+  const handleSubmit = (e) => {
+    
+  }
+
+
   return (
     <div>
       <div className="newcus">
