@@ -3,29 +3,33 @@ import bodyParser from "body-parser";
 import express from "express";
 import cors from "cors";
 import { createUsers, deleteUsers, getUsers, updateUser, loginUser } from "./controllers/UsersControllers.js";
-import { connectDB } from "./config/mysqlConnect.js";
+import { addNewCustomers, listAllCustomers } from "./controllers/customersControllers.js";
+import morgan from "morgan";
 dotenv.config();
 
 const app = express();
 const PORT = 3500;
-const connection = await connectDB();
-// connectDB();
 
 app.use(cors()); // Allow all requests
 app.use(bodyParser.json()); // Parses JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded bodies
+app.use(morgan('tiny'))
 
+//users routing for login, register, editing details and deleting account 
 app.get('/getuser', getUsers);
 app.post('/register', createUsers);
 app.delete('/deleteuser', deleteUsers);
 app.put('/updateuser', updateUser);
 app.post("/login", loginUser);
-// app.post("/register", handleNewUser);
+
+//Customers routing
+app.get('/getcustomers', listAllCustomers);
+app.post('/addcustomers', addNewCustomers);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-  
+
   // const oyaNa = async () => {
     
   //   const [results] = await connection.query("SELECT * FROM testing.users;");

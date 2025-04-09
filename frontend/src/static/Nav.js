@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { LuSquareArrowLeft, LuSquareArrowRight } from "react-icons/lu";
 import { FaAngleDown } from "react-icons/fa6";
@@ -210,6 +209,11 @@ const Nav = () => {
           </div>
           <a
             href="/"
+            onClick={() => {
+              localStorage.removeItem("users_id");
+              localStorage.removeItem("username");
+              localStorage.removeItem("customers_list");
+            }}
             className="px-2 py-1 rounded-md hover:bg-blue-900 inline-flex items-center w-full cursor-pointer"
           >
             <ImExit className="mr-4" />

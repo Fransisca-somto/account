@@ -1,0 +1,16 @@
+table {
+    border: 1px solid rgba(0, 0, 0, 0.637);
+    width: 98%;
+    margin: 0.5em;
+}
+
+tr th {
+    border: 1px solid rgba(255, 252, 252, 0.322);
+}
+
+td {
+    padding: 0.2em 0.3em;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.322);
+    text-align: left;
+}

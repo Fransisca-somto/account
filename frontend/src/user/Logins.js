@@ -14,13 +14,9 @@ function Logins() {
 
     try {
       const response = await axios.post("http://localhost:3500/login", { username: username, password: password });
-
+      localStorage.setItem("users_id", response.data.users_id);
+      localStorage.setItem("username", response.data.username);
       console.log("Login successful:", response.data);
-      
-      // Example: Store token if API sends it
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token);
-      }
 
       navigate("/user"); // Redirect to dashboard or next page
     } catch (err) {

@@ -1,6 +1,6 @@
 import { connectDB } from "../config/mysqlConnect.js";
 
-const connection = await connectDB();
+const connection = await connectDB("Users Database");
 
 export const getUser = async () => {
   const [users] = await connection.query(`SELECT * FROM testing.users`);

@@ -3,15 +3,14 @@
     flex-direction: column;
 }
 
-.newcus label input, .modifycus label input{
+.newcus label input, .newcus label textarea, .modifycus label input{
     padding: 0.2em 0.7em;
-    border: 1px solid rgba(0, 0, 0, 0.815);
+    border: 1px solid rgba(0, 0, 0, 0.233);
     border-radius: 0.2em;
+    outline: none;
 }
 
-.newcus label input:focus .modifycus label input:focus {
+.newcus label input:focus, .modifycus label input:focus, .newcus label textarea:focus {
     outline: none;
-    border: 2px solid rgb(0, 14, 136);
-
-
+    border: 1px solid rgb(18, 1, 63);
 }

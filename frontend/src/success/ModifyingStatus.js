@@ -1,70 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import "./newcustomers.css";
-import axios from "axios";
 
-const NewCustomers = () => {
-  const [userID, setUserID] = useState(null);
-  const [cusName, setCusName] = useState(null);
-  const [cusCompany, setCusCompany] = useState(null);
-  const [address, setAddress] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
-  const [branch, setBranch] = useState(null);
-  const [date, setDate] = useState(null);
-  const [creditLimit, setCreditLimit] = useState(null);
-  const [openingBalance, setOpeningBalance] = useState(null);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const storedUserID = localStorage.getItem("users_id");
-    if (storedUserID) {
-      setUserID(storedUserID);
-    }
-  }, []);
-
-  const handleSubmit = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-    setError("");
-
-    try {
-      const created = await axios.post("http://localhost:3500/addcustomers", {
-        users_id: userID,
-        cusName: cusName,
-        cusCompany: cusCompany,
-        address: address,
-        phoneNumber: phoneNumber,
-        branch: branch,
-        date: date,
-        creditLimit: creditLimit,
-        openingBalance: openingBalance,
-      });
-      console.log("Server response:", created.data); // Log response data
-      setError(created.data); // Set success/error message from server
-    } catch (err) {
-      console.error("Request error:", err.response?.data || err.message);
-      setError(err.response?.data || "An error occurred."); // Set human-readable error message
-      console.error("Request failed:", err); // Log full error for debugging
-
-      // Prevent the app from crashing
-      if (!err.response) {
-        setError("Network error. Please check your internet connection.");
-      } else if (err.response.status === 400) {
-        setError("Bad request. Please check your inputs.");
-      } else if (err.response.status === 500) {
-        setError("Server error. Try again later.");
-      } else {
-        setError(err.response?.data || "An unknown error occurred.");
-      }
-    } finally {
-      setLoading(false); // Stop loading
-    }
-  };
-
-  return (
-    <div>
-      <div className="newcus">
+export const ModifyingStatus = () => {
+    const [cusName, setCusName] = useState()
+    return (
+        <div>
+            <div className="newcus">
         <h1 className="bg-blue-950 text-white font-bold p-3 pl-12 w-full">
           New Customers
         </h1>
@@ -152,8 +93,6 @@ const NewCustomers = () => {
           </form>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default NewCustomers;
+        </div>
+    )
+}

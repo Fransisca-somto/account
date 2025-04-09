@@ -8,13 +8,19 @@ export const getUsers = async (req, res) => {
 }
 
 export const createUsers = async (req, res) => {
+    const users = await getUser();
     const username = req.body.username;
     const password = req.body.password;
+    const duplicate = users.find(user => user.username === username);
+    if (duplicate) {
+      console.log("User already exists")
+      return res.status(403).send({"Message": "User already exists"});
+    }
 
     try {
-        const hashedpassword = await bcrypt.hash(password, 11);
+        const hashedpassword = await bcrypt.hash(password, process.env.HASHCODE);
         const created = await createUser(username, hashedpassword);
-        console.log(created)
+        console.log("New user created successfully")
         res.status(200).send({"Message":"User successfully created"})
     } catch (err) {
         console.log(err)
@@ -28,7 +34,7 @@ export const updateUser = async (req, res) => {
     const id = req.body.id;
 
     try {
-        const hashedpassword = await bcrypt.hash(password, 11);
+        const hashedpassword = await bcrypt.hash(password, process.env.HASHCODE);
         await modifyUser(id, username, hashedpassword);
         console.log("user successfully modified")
         res.status(200).send({"Message": "User successfully modified"})
@@ -49,13 +55,12 @@ export const loginUser = async (req, res) => {
     const foundUser = users.find((user) => user.username == req.body.username);
 
     const isPassword = await bcrypt.compare(req.body.password, foundUser.password);
-    console.log(isPassword)
     if (isPassword) {
-      res.status(200).send({ Message: "User successfully Logged in" });
+      res.status(200).send(foundUser);
     } else {
       console.log("Incorrect password")
       res.status(500).send({"Message":"Incorrect password"})
-    }
+    };
     console.log("user successfully logged in");
   } catch (err) {
     console.log(err);
